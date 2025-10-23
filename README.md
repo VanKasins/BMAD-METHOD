@@ -1,5 +1,36 @@
 # BMAD-METHOD™: Universal AI Agent Framework
 
+> ## 🚨 **IMPORTANT VERSION ANNOUNCEMENT** 🚨
+>
+> ### Current Stable: v4.x | Next Major: v6 Alpha
+>
+> - **v4.x** - The current stable release version available via npm
+> - **v5** - Skipped (replaced by v6)
+> - **[v6-alpha](https://github.com/bmad-code-org/BMAD-METHOD/tree/v6-alpha)** - **NOW AVAILABLE FOR EARLY TESTING!**
+>
+> ### 🧪 Try v6 Alpha (Early Adopters Only)
+>
+> The next major version of BMAD-METHOD is now available for early experimentation and testing. This is a complete rewrite with significant architectural changes.
+>
+> **⚠️ WARNING: v6-alpha is for early adopters who are comfortable with:**
+>
+> - Potential breaking changes
+> - Daily updates and instability
+> - Incomplete features
+> - Experimental functionality
+>
+> **📅 Timeline:** Official beta version will be merged mid-October 2025
+>
+> **To try v6-alpha:**
+>
+> ```bash
+> git clone https://github.com/bmad-code-org/BMAD-METHOD.git
+> cd BMAD-METHOD
+> git checkout v6-alpha
+> ```
+>
+> ---
+
 [![Version](https://img.shields.io/npm/v/bmad-method?color=blue&label=version)](https://www.npmjs.com/package/bmad-method)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen)](https://nodejs.org)
@@ -75,8 +106,6 @@ This makes it easy to benefit from the latest improvements, bug fixes, and new a
 
 ```bash
 npx bmad-method install
-# OR explicitly use stable tag:
-npx bmad-method@stable install
 # OR if you already have BMad installed:
 git pull
 npm run install:bmad
@@ -111,86 +140,6 @@ npm run install:bmad # build and install all to a destination folder
 ## 🌟 Beyond Software Development - Expansion Packs
 
 BMAD™'s natural language framework works in ANY domain. Expansion packs provide specialized AI agents for creative writing, business strategy, health & wellness, education, and more. Also expansion packs can expand the core BMAD-METHOD™ with specific functionality that is not generic for all cases. [See the Expansion Packs Guide](docs/expansion-packs.md) and learn to create your own!
-
-## Codebase Flattener Tool
-
-The BMAD-METHOD™ includes a powerful codebase flattener tool designed to prepare your project files for AI model consumption. This tool aggregates your entire codebase into a single XML file, making it easy to share your project context with AI assistants for analysis, debugging, or development assistance.
-
-### Features
-
-- **AI-Optimized Output**: Generates clean XML format specifically designed for AI model consumption
-- **Smart Filtering**: Automatically respects `.gitignore` patterns to exclude unnecessary files
-- **Binary File Detection**: Intelligently identifies and excludes binary files, focusing on source code
-- **Progress Tracking**: Real-time progress indicators and comprehensive completion statistics
-- **Flexible Output**: Customizable output file location and naming
-
-### Usage
-
-```bash
-# Basic usage - creates flattened-codebase.xml in current directory
-npx bmad-method flatten
-
-# Specify custom input directory
-npx bmad-method flatten --input /path/to/source/directory
-npx bmad-method flatten -i /path/to/source/directory
-
-# Specify custom output file
-npx bmad-method flatten --output my-project.xml
-npx bmad-method flatten -o /path/to/output/codebase.xml
-
-# Combine input and output options
-npx bmad-method flatten --input /path/to/source --output /path/to/output/codebase.xml
-```
-
-### Example Output
-
-The tool will display progress and provide a comprehensive summary:
-
-```text
-📊 Completion Summary:
-✅ Successfully processed 156 files into flattened-codebase.xml
-📁 Output file: /path/to/your/project/flattened-codebase.xml
-📏 Total source size: 2.3 MB
-📄 Generated XML size: 2.1 MB
-📝 Total lines of code: 15,847
-🔢 Estimated tokens: 542,891
-📊 File breakdown: 142 text, 14 binary, 0 errors
-```
-
-The generated XML file contains your project's text-based source files in a structured format that AI models can easily parse and understand, making it perfect for code reviews, architecture discussions, or getting AI assistance with your BMAD-METHOD™ projects.
-
-#### Advanced Usage & Options
-
-- CLI options
-  - `-i, --input <path>`: Directory to flatten. Default: current working directory or auto-detected project root when run interactively.
-  - `-o, --output <path>`: Output file path. Default: `flattened-codebase.xml` in the chosen directory.
-- Interactive mode
-  - If you do not pass `--input` and `--output` and the terminal is interactive (TTY), the tool will attempt to detect your project root (by looking for markers like `.git`, `package.json`, etc.) and prompt you to confirm or override the paths.
-  - In non-interactive contexts (e.g., CI), it will prefer the detected root silently; otherwise it falls back to the current directory and default filename.
-- File discovery and ignoring
-  - Uses `git ls-files` when inside a git repository for speed and correctness; otherwise falls back to a glob-based scan.
-  - Applies your `.gitignore` plus a curated set of default ignore patterns (e.g., `node_modules`, build outputs, caches, logs, IDE folders, lockfiles, large media/binaries, `.env*`, and previously generated XML outputs).
-- Binary handling
-  - Binary files are detected and excluded from the XML content. They are counted in the final summary but not embedded in the output.
-- XML format and safety
-  - UTF-8 encoded file with root element `<files>`.
-  - Each text file is emitted as a `<file path="relative/path">` element whose content is wrapped in `<![CDATA[ ... ]]>`.
-  - The tool safely handles occurrences of `]]>` inside content by splitting the CDATA to preserve correctness.
-  - File contents are preserved as-is and indented for readability inside the XML.
-- Performance
-  - Concurrency is selected automatically based on your CPU and workload size. No configuration required.
-  - Running inside a git repo improves discovery performance.
-
-#### Minimal XML example
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<files>
-  <file path="src/index.js"><![CDATA[
-    // your source content
-  ]]></file>
-</files>
-```
 
 ## Documentation & Resources
 
